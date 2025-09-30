@@ -1,35 +1,34 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QTableWidget, QTableWidgetItem, \
     QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton, QMessageBox, QGridLayout, QLabel
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
 import sys
 import sqlite3
 
 
-
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.setWindowIcon(QIcon("icons/student.png"))
         self.setWindowTitle("Students")
         self.setFixedSize(500,300)
 
         file_menu_item = self.menuBar().addMenu("File")
         edit_menu_item = self.menuBar().addMenu("Edit")
 
-        add_student = QAction("Add Student", self)
+        add_student = QAction(QIcon("icons/add.png"), "Add Student", self)
         add_student.triggered.connect(self.insert)
         file_menu_item.addAction(add_student)
 
-        search = QAction("Search", self)
+        search = QAction(QIcon("icons/search.png"),"Search", self)
         search.triggered.connect(self.search)
         edit_menu_item.addAction(search)
 
-        edit = QAction("Update Student", self)
+        edit = QAction(QIcon("icons/update.png"),"Update Student", self)
         edit.triggered.connect(self.edit)
         edit_menu_item.addAction(edit)
 
-        delete = QAction("Delete entry", self)
+        delete = QAction(QIcon("icons/delete.png"),"Delete entry", self)
         delete.triggered.connect(self.delete)
         edit_menu_item.addAction(delete)
 
@@ -249,7 +248,6 @@ class DeleteDialog(QDialog):
         confirmation_widget.setWindowTitle("Success")
         confirmation_widget.setText("The record was deleted successfully!")
         confirmation_widget.exec()
-
 
 
 app = QApplication(sys.argv)
